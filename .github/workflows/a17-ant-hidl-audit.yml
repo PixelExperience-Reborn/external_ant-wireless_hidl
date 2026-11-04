@@ -1,0 +1,20 @@
+name: P2 archived ANT HIDL interface inventory
+
+on:
+  push:
+    branches:
+      - audit/a17-mondrian-ant-hidl-20261104
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  legacy-ant-hidl-inventory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify historical ANT HIDL 1.0 surface (no HAL generation)
+        run: python3 tools/verify_a17_ant_hidl_legacy.py
